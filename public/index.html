@@ -1,4 +1,6 @@
-<html><head>
+<html>
+
+<head>
     <title>
 
     </title>
@@ -18,10 +20,10 @@
         }
 
         main {
-            /* float: left; */
-            /* width: 80%; */
-            padding: 10px;
-            /* background-color: beige; */
+            display: flex;
+            grid-template-columns: row;
+            justify-content: center;
+            gap: 10px;
         }
 
         * {
@@ -32,12 +34,13 @@
             width: 33%;
             float: left;
             padding: 10px;
-            
-        
+
 
         }
-        img{
+
+        img {
             border-radius: 5px;
+            width: 100%;
         }
 
         #center {
@@ -51,12 +54,11 @@
 
         .clearfix::after {
             clear: both;
-            
+
         }
 
         nav a {
-            display: block;
-            float: left;
+            display: inline-block;
             padding: 10px;
 
             color: #f2f2f2;
@@ -72,16 +74,23 @@
             color: #333;
         }
 
-        @media screen and (max-width: 550px) {
+        @media screen and (max-width: 750px) {
+            .main {
+                display: flex;
+                flex-direction: column;
+            }
+
             .img-container {
                 width: 100%;
                 float: none;
                 padding: 10px 0px 10px 0px;
             }
-            #center{
+
+            #center {
                 width: 100%;
             }
-            nav a{
+
+            nav a {
                 width: 100%;
                 float: none !important;
             }
@@ -95,7 +104,8 @@
         header {
             text-align: center;
         }
-        main{
+
+        main {
             margin-bottom: 30px;
         }
 
@@ -108,7 +118,7 @@
 <body>
     <header>
         <h1>
-            Responsive Web Gallery
+            Test Test Test
         </h1>
     </header>
     <nav>
@@ -129,7 +139,7 @@
             Search Bar place holder
         </a>
 
-        
+
     </nav>
     <main>
 
@@ -149,4 +159,6 @@
 
 
 
-</body></html>
+</body>
+
+</html>
