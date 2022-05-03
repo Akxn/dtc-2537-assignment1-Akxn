@@ -2,7 +2,12 @@ to_add = ''
 
 function processPokemonResponse(data) {
     // console.log(data)
-    to_add += ` ${data.name} <div class="image_container"> <img src="${data.sprites.other["official-artwork"].front_default}"> </div>`
+    to_add += `<div class="image_container">
+    <a href= "/profile/${data.id}">
+    <img src="${data.sprites.other["official-artwork"].front_default}">
+    <div> ${data.name} </div>
+    <div> ${data.base_experience}</div>
+    </div>`
 
 }
 async function loadNineImages() {
