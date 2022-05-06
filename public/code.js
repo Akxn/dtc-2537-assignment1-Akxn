@@ -4,7 +4,7 @@ function processPokemonResponse(data) {
     // console.log(data)
     to_add += `<div class="image_container">
     <a href= "/profile/${data.id}">
-    <img src="${data.sprites.other["official-artwork"].front_default}">
+    <img src="${data.sprites.other["official-artwork"].front_default}"> </a>
     <div> ${data.name} </div>
     <div> ${data.base_experience}</div>
     </div>`
@@ -22,7 +22,6 @@ async function loadNineImages() {
             url: `https://pokeapi.co/api/v2/pokemon/${x}/`,
             success: processPokemonResponse
         })
-
         if (i % 3 == 0) {
             to_add += `</div>`
         }

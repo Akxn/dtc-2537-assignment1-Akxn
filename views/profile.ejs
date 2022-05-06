@@ -6,28 +6,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        #pokedex {
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body>
-    <h1> Test
-        <br>
 
+            <div id="pokedex">
+                This Pokemon name is <%= name %>
 
-        This Pokemon id is <%= id %>
-
-       <br>
-
-       This Pokemon name is <%= name %>
-
-       <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/<%= id %>.png" alt="">
-        <br>
-        Stat.
-        <br>
-
-        hp is <%= hp %> 
-        <progress value="<%= hp %>" max="255"> <%= hp %> </progress>
-
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/<%= id %>.png"
+                        alt="">
+            </div>
+            Stat.
+            <div id="hp">
+                hp is <%= hp %>
+                <progress value="<%= hp %>" max="255">
+                        <%= hp %>
+                    </progress>
+            </div>
     </h1>
 </body>
 
-</html> 
+</html>
