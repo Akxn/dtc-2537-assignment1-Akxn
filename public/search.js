@@ -1,31 +1,39 @@
 type_g = ''
-function processPokeResponse(data){
-    for (i = 0; i < data.types.length ; i++){
-        if (data.types[i].type.name == type_g)        {
+storage = ''
+function processPokeResponse(data) {
+    for (i = 0; i < data.types.length; i++) {
+        if (data.types[i].type.name == type_g) {
 
             $("main").append("<p>" + data.id + "</p>")
 
             $("main").append(`<img src="${data.sprites.other["official-artwork"].front_default}" >`)
         }
-
-    } 
-
-}
-
-function processPokeRegion(data) {
-    console.log(data);
-    for (i = 0; i < data.results.length ; i++){
-
-            $("main").append("<div>" + data.results[i].name + "</div>")
-
-            // $("main").append(`<img src="${data.sprites.other["official-artwork"].front_default}" >`)
     }
 }
 
-function display(type_){
+function processPokeRegion(data) {
+    storage = data.results;
+    for (i = 0; i < data.results.length; i++) {
+        $("main").append(`<div>${data.results[i].name}</div>`)
+        $("main").append(`<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${getID(data.results[i].url)}.png" >`)
+    }
+}
+
+function getID(url) {
+    return url.split('pokemon/')[1].split('/')[0]
+}
+
+function sortProcess() {
+    for (i = 0; i < storage.length; i++) {
+        $("main").append(`<div>${storage[i].name}</div>`)
+        $("main").append(`<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${getID(storage[i].url)}.png" >`)
+    }
+}
+
+function display(type_) {
     $("main").empty()
     type_g = type_
-    for (i = 1; i < 899; i++){
+    for (i = 1; i < 899; i++) {
         // for each pokemon
         $.ajax({
             type: "get",
@@ -36,17 +44,38 @@ function display(type_){
 }
 
 function displayRegion(start, end) {
-
+    $("main").empty()
     $.ajax({
         type: "get",
         url: `https://pokeapi.co/api/v2/pokemon/?limit=${end}&offset=${start}`,
-        success: function(response) {
-            processPokeRegion(response)
-        }
+        success: processPokeRegion
     })
 }
 
-function setup(){
+
+function sortByName() {
+    console.log(storage)
+    searchType = $('#search-sort').val();
+    if (searchType === 'name') {
+        storage.sort((a, b) => {
+            if (a.name < b.name) return -1;
+            if (a.name > b.name) return 1;
+            return 0;
+        })
+        // $('#poke-container').empty()
+    }
+    if (searchType === 'id') {
+        storage.sort((a, b) => {
+            return getID(a.url) - getID(b.url)
+        })
+        // $('#poke-container').empty()
+    }
+    console.log(storage)
+    $('main').empty()
+    sortProcess()
+}
+
+function setup() {
 
     display($("#poke_type option:selected").val());
 
@@ -54,40 +83,43 @@ function setup(){
         // alert($(this).attr("value"));
         poke_type = $("#poke_type option:selected").val();
         display(poke_type);
-      })
+    })
 
     $("#region").change(() => {
         pokeregion = $("#region option:selected").val();
-        $('body').empty();
         switch (pokeregion) {
             case 'kanto':
-                displayRegion(1,151)
+                displayRegion(1, 151)
                 break;
             case 'johto':
-                displayRegion(152,251)
+                displayRegion(152, 251)
                 break
             case 'hoenn':
-                displayRegion(252,386)
+                displayRegion(252, 386)
                 break
             case 'sinnoh':
-                displayRegion(387,494)
+                displayRegion(387, 494)
                 break
             case 'unova':
-                displayRegion(495,649)
+                displayRegion(495, 649)
                 break
             case 'kalos':
-                displayRegion(650,721)
+                displayRegion(650, 721)
                 break
             case 'alola':
-                displayRegion(722,809)
+                displayRegion(722, 809)
                 break
             case 'galar':
-                displayRegion(810,898)
+                displayRegion(810, 898)
                 break
             default:
                 console.log('This shouldnt happen')
                 break
         }
+    })
+
+    $("#search-sort").change(() => {
+        sortByName();
     })
 }
 
