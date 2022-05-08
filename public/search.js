@@ -1,21 +1,58 @@
 type_g = ''
 storage = ''
+add_to = ''
 function processPokeResponse(data) {
     for (i = 0; i < data.types.length; i++) {
         if (data.types[i].type.name == type_g) {
 
             $("main").append("<p>" + data.id + "</p>")
 
-            $("main").append(`<img src="${data.sprites.other["official-artwork"].front_default}" >`)
+            $("main").append(`
+                <div class="card">
+                <img src="${data.sprites.other["official-artwork"].front_default}" >
+                </div>`)
         }
     }
+}
+
+function searchPokemonName() {
+    searchreq = $("#pokemonName").val().toLowerCase()
+    $.ajax({
+        type: "get",
+        url: `https://pokeapi.co/api/v2/pokemon/${searchreq}`,
+        success: singlePokemon
+    })
+    $("main").empty()
+}
+
+function singlePokemon(data) {
+    $("main").append(`
+        <div class="card">
+            <div> ${data.id}</div>
+            <img src="${data.sprites.other["official-artwork"].front_default}" >
+        </div>
+    `)
+    getHistory(data);
+}
+
+function getHistory(data) {
+        $('.history').append(`
+                <div>
+                    <a href="../profile/${data.id}">${data.name}</a>
+                </div>
+                `)
 }
 
 function processPokeRegion(data) {
     storage = data.results;
     for (i = 0; i < data.results.length; i++) {
-        $("main").append(`<div>${data.results[i].name}</div>`)
-        $("main").append(`<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${getID(data.results[i].url)}.png" >`)
+        // $("main").append(`<div>${data.results[i].name}</div>`)
+        $("main").append(`
+        <div class="card">
+        <a href= "/profile/${getID(data.results[i].url)}">
+        <div>${data.results[i].name}</div>
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${getID(data.results[i].url)}.png"></a>
+        </div>`)
     }
 }
 
@@ -25,8 +62,13 @@ function getID(url) {
 
 function sortProcess() {
     for (i = 0; i < storage.length; i++) {
-        $("main").append(`<div>${storage[i].name}</div>`)
-        $("main").append(`<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${getID(storage[i].url)}.png" >`)
+        // $("main").append(`<div>${storage[i].name}</div>`)
+        $("main").append(`
+        <div class="card">
+        <a href= "/profile/${getID(storage[i].url)}">
+        <div>${storage[i].name}</div>
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${getID(storage[i].url)}.png"></a>
+        </div>`)
     }
 }
 
@@ -120,6 +162,9 @@ function setup() {
 
     $("#search-sort").change(() => {
         sortByName();
+    })
+    $("#searchPokemon").click(() => {
+        searchPokemonName();
     })
 }
 

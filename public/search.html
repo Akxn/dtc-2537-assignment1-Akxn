@@ -9,9 +9,23 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="search.js"></script>
+    <style>
+        main {
+            display:grid;
+            grid-template-columns: repeat(3,1fr);
+        }
+        .card {
+            text-align: center;
+            background-color: #eee;
+            padding: 20px;
+            margin: 10px;
+            border-radius: 40px;
+        }
+    </style>
 </head>
 
 <body>
+    <div>
     <select name="poke_type" id="poke_type">
         <option value="all">All</option>
         <option value="normal">Normal</option>
@@ -31,6 +45,7 @@
         <option value="steel">Steel</option>
         <option value="fairy">Fairy</option>
     </select>
+    </div>
     <div class="region-selection">
         <label for="type">Choose A Region</label>
         <select name="region" id="region">
@@ -51,6 +66,12 @@
             <option value="name">Name</option>
         </select>
     </div>
+    <div class="searchName">
+            <label>Search Pokemon</label>
+            <input type="text" id="pokemonName" placeholder="Enter Name or ID">
+            <input type="submit" value="search" id="searchPokemon">
+    </div>
+    <div class="history"></div>
 
     <main>
         <div>
