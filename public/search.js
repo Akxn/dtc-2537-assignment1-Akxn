@@ -15,7 +15,7 @@ function processPokeResponse(data){
 function display(type_){
     $("main").empty()
     type_g = type_
-    for (i = 1; i < 100; i++){
+    for (i = 1; i < 899; i++){
         // for each pokemon
         $.ajax({
             type: "get",
