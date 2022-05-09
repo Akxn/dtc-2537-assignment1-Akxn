@@ -50,8 +50,8 @@ function processPokeRegion(data) {
         $("main").append(`
         <div class="card">
         <a href= "/profile/${getID(data.results[i].url)}">
-        <div>${data.results[i].name}</div>
-        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${getID(data.results[i].url)}.png"></a>
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${getID(data.results[i].url)}.png">
+        <div>${data.results[i].name}</div></a>
         </div>`)
     }
 }

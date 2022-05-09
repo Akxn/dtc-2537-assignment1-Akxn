@@ -7,28 +7,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
     <style>
+        body{
+            text-align: center;
+        }
         #pokedex {
             text-align: center;
+        }
+
+        .pokemon{
+            text-align: center;
+            background-color: rgb(156, 155, 155);
+            margin: 10px;
+            border-radius: 40px;
         }
     </style>
 </head>
 
 <body>
-
-            <div id="pokedex">
-                This Pokemon name is <%= name %>
-
-                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/<%= id %>.png"
-                        alt="">
-            </div>
-            Stat.
-            <div id="hp">
-                hp is <%= hp %>
-                <progress value="<%= hp %>" max="255">
-                        <%= hp %>
-                    </progress>
-            </div>
-    </h1>
+    <div class="pokemon">
+    <div id="pokedex">
+            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/<%= id %>.png"
+                alt="">
+    </div>
+    <div>
+        This Pokemon name is <%= name %>
+    </div><br>
+    <div>Stats</div>
+    <div id="hp">
+        <span>HP</span>  <progress value="<%= hp %>" max="255">
+                <%= hp %>
+            </progress> <%= hp %>
+    </div>
+    <div id="attack">
+        <span>Attack</span>   <progress value="<%=attack %>" max="255">
+                <%= attack%>
+            </progress> <%= attack %>
+    </div>
+    <div id="defense">
+        <span>Defense</span>   <progress value="<%=defense %>" max="255">
+                <%= defense %>
+            </progress> <%= defense %>
+    </div>
+    <div id="special_attack">
+        <span>Special Attack</span>   <progress value="<%= special_attack %>" max="255">
+                <%= special_attack %>
+            </progress> <%= special_attack %>
+    </div>
+    <div id="speed">
+        <span>Speed</span>   <progress value="<%= speed %>" max="255">
+                <%= speed %>
+            </progress> <%= speed %>
+    </div>
+    <div id="hp">
+        HP  <progress value="<%= hp %>" max="255">
+                <%= hp %>
+            </progress> <%= hp %>
+    </div>
+    </div>
 </body>
 
 </html>
