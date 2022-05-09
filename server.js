@@ -3,10 +3,10 @@ const app = express()
 app.set('view engine', 'ejs');
 const https = require('https');
 
-app.listen(5000, function (err) {
-    if (err)
-        console.log(err);
-})
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Our app is running on port ${ PORT }`);
+});
 
 app.get('/search', function (req, res) {
     res.sendFile(__dirname + "/public/search.html");
