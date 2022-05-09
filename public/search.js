@@ -1,14 +1,35 @@
 type_g = ''
 storage = ''
 add_to = ''
+currentPage = 0
+pokemonPage = 10
+
+// const cardColors = {
+//     fire: '#FDDFDF',
+//     grass: '#DEFDE0',
+//     electric: '#FCF7DE',
+//     water: '#DEF3FD',
+//     ground: '#F4e7da',
+//     rock: 'd5d5d4',
+//     fairy: '#fceaff',
+//     poison: '#98d7a5',
+//     bug: '#f8d5a3',
+//     dragon: '#98b3e6',
+//     psychic: '#eaeda1',
+//     flying: 'F5F5F5',
+//     fighting: '#E6E0D4',
+//     normal: '#F5F5F5'
+// };
+// const main_types = Object.keys(cardColors)
 function processPokeResponse(data) {
+    // const pokemon_types = data.types.map(type => type.type.name);
+    // const type = main_types.find(type => pokemon_types.indexOf(type) > -1);
+    // const colour = cardColors[type];
     for (i = 0; i < data.types.length; i++) {
         if (data.types[i].type.name == type_g) {
-
             // $("main").append("<p>" + data.id + "</p>")
-
             $("main").append(`
-                <div class="card">
+                <div class="card" style ="background-clor: ${colour}">
                 <a href="../profile/${data.id}"><img src="${data.sprites.other["official-artwork"].front_default}">${data.name}</a>
                 </div>`)
         }
@@ -28,15 +49,16 @@ function searchPokemonName() {
 function singlePokemon(data) {
     $("main").append(`
         <div class="card">
-            <div> ${data.id}</div>
-            <img src="${data.sprites.other["official-artwork"].front_default}" >
+        <a href="../profile/${data.id}"><img src="${data.sprites.other["official-artwork"].front_default}" >
+            <div> ${data.name}</div>
+            </a>
         </div>
     `)
     getHistory(data);
 }
 
 function getHistory(data) {
-        $('.history').append(`
+    $('.history').append(`
                 <div>
                     <a href="../profile/${data.id}">${data.name}</a>
                 </div>
@@ -117,6 +139,21 @@ function sortByName() {
     sortProcess()
 }
 
+function nextPage() {
+
+}
+
+function prevPage() {
+    if (currentPage > 0) {
+        currentPage - 1;
+    }
+    var x = currentPage * pokemonPage
+    for (i = 0; i < pokemonPage; i++) {
+        console.log(storage[x + 1].name);
+    }
+
+}
+
 function setup() {
 
     display($("#poke_type option:selected").val());
@@ -131,28 +168,28 @@ function setup() {
         pokeregion = $("#region option:selected").val();
         switch (pokeregion) {
             case 'kanto':
-                displayRegion(1, 151)
+                displayRegion(0, 151)
                 break;
             case 'johto':
-                displayRegion(152, 251)
+                displayRegion(151, 251)
                 break
             case 'hoenn':
-                displayRegion(252, 386)
+                displayRegion(251, 386)
                 break
             case 'sinnoh':
-                displayRegion(387, 494)
+                displayRegion(386, 494)
                 break
             case 'unova':
-                displayRegion(495, 649)
+                displayRegion(494, 649)
                 break
             case 'kalos':
-                displayRegion(650, 721)
+                displayRegion(649, 721)
                 break
             case 'alola':
-                displayRegion(722, 809)
+                displayRegion(721, 809)
                 break
             case 'galar':
-                displayRegion(810, 898)
+                displayRegion(809, 898)
                 break
             default:
                 console.log('This shouldnt happen')
@@ -166,6 +203,10 @@ function setup() {
     $("#searchPokemon").click(() => {
         searchPokemonName();
     })
+    $('#first').click(() => changePage(0))
+    $('#prev').click(() => prevPage())
+    $('#next').click(() => nextPage())
+    $('#last').click(() => changePage(getPageNum() - 1))
 }
 
 

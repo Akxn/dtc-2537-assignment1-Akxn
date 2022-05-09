@@ -37,6 +37,13 @@
             width: auto;
         }
 
+        @media screen and (max-width: 750px) {
+            main {
+                display: grid;
+                grid-template-columns: repeat(1, 1fr);
+            }
+        }
+
         /* body {
             text-align: center;
         } */
@@ -99,7 +106,12 @@
 
         </div>
     </main>
-
+    <div class="pagination" id="pagination">
+        <button id="first">First</button>
+        <button id="prev">Prev</button>
+        <button id="next">Next</button>
+        <button id="last">Last</button>
+    </div>
 </body>
 
 </html>

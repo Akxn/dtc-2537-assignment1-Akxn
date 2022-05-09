@@ -13,6 +13,8 @@
         }
 
         body {
+            display: flex;
+            flex-direction: row;
             margin: 0px;
             padding: 0%;
             background-color: #ffffff;
@@ -22,7 +24,6 @@
             text-align: center;
             color: rgb(204, 23, 23);
             background-color: #ffffff;
-
         }
 
         nav {
@@ -40,10 +41,6 @@
             padding: 10px;
             width: 100%;
         }
-
-        /* * {
-            box-sizing: border-box;
-        } */
 
         img {
             border-radius: 5px;
@@ -69,22 +66,33 @@
             border-radius: 40px;
         }
 
-        .image_container img {
-            margin-top: 20px;
-            max-width: 90%;
+        .nav {
+            background-color: #333;
+            overflow: hidden;
+        }
+
+        .nav a {
+            float: center;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+        .nav a:hover {
+            background-color: #ddd;
+            color: black;
         }
 
 
         @media screen and (max-width: 750px) {
-            nav {
+            body {
+                display: flex;
                 flex-direction: column;
+                width: 50%;
             }
-
-            .images_group {
-                flex-direction: column;
-                gap: 10px;
-            }
-
         }
     </style>
 </head>
@@ -93,15 +101,13 @@
     <div id="outer">
         <header>
             <h1>
-                Test Test Test
+                Shen's PokeDex
             </h1>
         </header>
-        <nav>
-            <a href="./search.html" style="float: right;">
-                Search Bar place holder
+        <nav class="nav">
+            <a href="./search.html">
+                Click to search
             </a>
-
-
         </nav>
         <main>
 
@@ -112,9 +118,6 @@
                 Copyright © Shen's webby 2022
             </h5>
         </footer>
-
-
-
     </div>
 </body>
 
