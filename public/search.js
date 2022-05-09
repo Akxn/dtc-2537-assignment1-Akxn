@@ -5,11 +5,11 @@ function processPokeResponse(data) {
     for (i = 0; i < data.types.length; i++) {
         if (data.types[i].type.name == type_g) {
 
-            $("main").append("<p>" + data.id + "</p>")
+            // $("main").append("<p>" + data.id + "</p>")
 
             $("main").append(`
                 <div class="card">
-                <img src="${data.sprites.other["official-artwork"].front_default}" >
+                <a href="../profile/${data.id}"><img src="${data.sprites.other["official-artwork"].front_default}">${data.name}</a>
                 </div>`)
         }
     }
