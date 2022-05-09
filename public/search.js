@@ -118,7 +118,6 @@ function displayRegion(start, end) {
 
 
 function sortByName() {
-    console.log(storage)
     searchType = $('#search-sort').val();
     if (searchType === 'name') {
         storage.sort((a, b) => {
@@ -151,7 +150,6 @@ function prevPage() {
     for (i = 0; i < pokemonPage; i++) {
         console.log(storage[x + 1].name);
     }
-
 }
 
 function setup() {
