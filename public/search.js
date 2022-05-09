@@ -29,7 +29,7 @@ function processPokeResponse(data) {
         if (data.types[i].type.name == type_g) {
             // $("main").append("<p>" + data.id + "</p>")
             $("main").append(`
-                <div class="card" style ="background-clor: ${colour}">
+                <div class="card">
                 <a href="../profile/${data.id}"><img src="${data.sprites.other["official-artwork"].front_default}">${data.name}</a>
                 </div>`)
         }
